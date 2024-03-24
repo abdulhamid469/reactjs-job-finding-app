@@ -12,5 +12,19 @@ body {
   padding: 0;
   box-sizing: border-box;
   background-color: #f7f8fa;
-  overflow: hidden;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 6px;
+}
+
+::-webkit-scrollbar * {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6366fa !important;
+  border-radius: 5px;
 }
