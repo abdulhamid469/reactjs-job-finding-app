@@ -1,11 +1,13 @@
-import { Outlet } from 'react-router';
-import Navbar from '../components/Navbar';
+import { Outlet } from "react-router";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const Layout = () => {
   return (
-    <div>
+    <div className="w-screen h-screen flex flex-col justify-between">
         <Navbar />
         <Outlet />
+        <Footer />
     </div>
   )
 }
