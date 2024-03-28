@@ -1,9 +1,14 @@
+import { useState } from "react";
 import Filters from "../../components/Filters";
 import Hero from "../../components/Hero";
 import Services from "../../components/Services";
 import WelcomeText from "../../components/WelcomeText";
+import { jobs } from "../../data/jobs";
 
 const Home = () => {
+  const [filteredJobs, setFilteredJobs] = useState(jobs)
+  const [savedJobs, setSavedJobs] = useState<number[]>([]);
+  const handleFilterChange = ( filters: { contractStatus:string[], workStatus: string[] }) => {};
   return (
     <div className="w-full">
       <Hero />
@@ -11,7 +16,7 @@ const Home = () => {
       <div className="w-full mt-12 mb-12">
         <WelcomeText />
         <div className="w-full flex md:flex-row flex-col items-start relative md:px-16 px-5 gap-9">
-          <Filters />
+          <Filters savedJobs={savedJobs} onFilterChange={handleFilterChange} />
         </div>
       </div>
     </div>
