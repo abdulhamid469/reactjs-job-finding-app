@@ -20,7 +20,7 @@ const Home = () => {
     setFilteredJobs(filtered);
   };
 
-  const handleSearch = (query: String) => {
+  const handleSearch = (query: string) => {
 
   };
 
