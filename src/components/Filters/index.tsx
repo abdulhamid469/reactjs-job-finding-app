@@ -1,6 +1,7 @@
-import { useState } from "react";
-import { CloseCircleOutline } from "react-ionicons";
+import { useCallback, useEffect, useState } from "react";
+import { BusinessOutline, Checkbox, CloseCircleOutline } from "react-ionicons";
 import { useNavigate } from "react-router";
+import { jobs } from "../../data/jobs";
 
 interface FiltersProps {
   onFilterChange: (filters: {
@@ -11,13 +12,43 @@ interface FiltersProps {
 }
 const Filters = ({ onFilterChange, savedJobs }: FiltersProps) => {
 
-  const [contract, Setcontract] = useState<string[]>([]);
+  const [contract, setContract] = useState<string[]>([]);
   const [work, setWork] = useState<string[]>([]);
   const navigate = useNavigate();
 
-  const handleCloseFilters = () => {};
-  const handleContractStatusChange = () => {};
-  const handleLocationStatusChange = () => {};
+  const memoFilterChange = useCallback(onFilterChange, []);
+  useEffect(() => {
+    memoFilterChange({contractStatus: contract, workStatus: work});
+  }, [contract, work, memoFilterChange]);
+
+  const handleCloseFilters = () => {
+    setContract([]);
+    setWork([]);
+  };
+  const handleContractStatusChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const isChecked = e.target.checked;
+    const filterValue = e.target.value;
+
+    setContract((prev) => {
+      if(isChecked) {
+        return [...prev, filterValue];
+      } else {
+        return prev.filter((status) => status !== filterValue);
+      }
+    })
+  };
+  const handleLocationStatusChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const isChecked = e.target.checked;
+    const filterValue = e.target.value;
+
+    setWork((prev) => {
+      if(isChecked) {
+        return [...prev, filterValue];
+      } else {
+        return prev.filter((status) => status !== filterValue);
+      }
+    })
+  };
 
   return (
     <div className="md:sticky relative md:top-10 md:w-[500px] w-full">
@@ -74,12 +105,20 @@ const Filters = ({ onFilterChange, savedJobs }: FiltersProps) => {
               savedJobs.map((job) => {
                 const j = jobs.find((j) => j.id === job);
                 if(j) {
-                  return <div key={job} className="text-gray-800 flex items-center justify-between w-full border border-gray-300 pb-3">
+                  return (
+                    <div key={job} className="text-gray-800 flex items-center justify-between w-full border border-gray-300 pb-3">
                     <div className="flex flex-col items-start gap-1">
                       <span className="">j.title</span>
+                      <div className="flex items-center gap-2">
+                        <BusinessOutline width={"18px"} height={"18px"} color={"#555"} />
+                        <span className="text-[14px] text-gray-600">j.company</span>
+                      </div>
                     </div>
+                    <button onClick={() => navigate(`/jobs/${j.id}`)} className="w-full text-white font-semibold text-[15px] rounded-md bg-indigo-500" >Apply</button>
                   </div>
+                  );
                 }
+                return null;
               })
             }
           </div>
