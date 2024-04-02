@@ -4,6 +4,7 @@ import Hero from "../../components/Hero";
 import Services from "../../components/Services";
 import WelcomeText from "../../components/WelcomeText";
 import Searchbar from "../../components/Searchbar";
+import ListedJobs from "../../components/ListedJobs";
 import { jobs } from "../../data/jobs";
 
 const Home = () => {
@@ -32,7 +33,10 @@ const Home = () => {
         <WelcomeText />
         <div className="w-full flex md:flex-row flex-col items-start relative md:px-16 px-5 gap-9">
           <Filters savedJobs={savedJobs} onFilterChange={handleFilterChange} />
-          <Searchbar onSearch={handleSearch} />
+          <div className="w-full">
+            <Searchbar onSearch={handleSearch} />
+            <ListedJobs jobs={filteredJobs} savedJobs={savedJobs} setSavedJobs={setSavedJobs} />
+          </div>
         </div>
       </div>
     </div>
