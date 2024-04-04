@@ -22,7 +22,8 @@ const Home = () => {
   };
 
   const handleSearch = (query: string) => {
-
+    const filtered = jobs.filter((job) => job.title.toLowerCase().includes(query.toLowerCase()));
+    setFilteredJobs(filtered);
   };
 
   return (

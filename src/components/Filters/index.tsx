@@ -79,15 +79,15 @@ const Filters = ({ onFilterChange, savedJobs }: FiltersProps) => {
             <span className="text-gray-800 font-semibold text-[15.5px]"> Location Status </span>
             <div className="w-full flex flex-col gap-2">
               <div className="w-full flex items-center gap-2">
-                <input type="checkbox" value="On-Site" checked={contract.some((c) => c === "On-Site")} onChange={handleLocationStatusChange} className="w-[16px] h-[16px]" />
+                <input type="checkbox" value="On-Site" checked={work.some((c) => c === "On-Site")} onChange={handleLocationStatusChange} className="w-[16px] h-[16px]" />
                 <span className="text-gray-800 font-semibold text-[15px]">On-Site</span>
               </div>
               <div className="w-full flex items-center gap-2">
-                <input type="checkbox" value="Remote" checked={contract.some((c) => c === "Remote")} onChange={handleLocationStatusChange} className="w-[16px] h-[16px]" />
+                <input type="checkbox" value="Remote" checked={work.some((c) => c === "Remote")} onChange={handleLocationStatusChange} className="w-[16px] h-[16px]" />
                 <span className="text-gray-800 font-semibold text-[15px]">Remote</span>
               </div>
               <div className="w-full flex items-center gap-2">
-                <input type="checkbox" value="Hybrid" checked={contract.some((c) => c === "Hybrid")} onChange={handleLocationStatusChange} className="w-[16px] h-[16px]" />
+                <input type="checkbox" value="Hybrid" checked={work.some((c) => c === "Hybrid")} onChange={handleLocationStatusChange} className="w-[16px] h-[16px]" />
                 <span className="text-gray-800 font-semibold text-[15px]">Hybrid</span>
               </div>
             </div>

@@ -1,4 +1,4 @@
-import { BusinessOutline, LocateOutline, NewspaperOutline } from "react-ionicons";
+import { BookmarkOutline, BusinessOutline, LocateOutline, NewspaperOutline } from "react-ionicons";
 import { useNavigate } from "react-router";
 
 type Job = {
@@ -23,7 +23,14 @@ interface ListedJobsProps {
 const ListedJobs = ({ jobs, setSavedJobs ,savedJobs }: ListedJobsProps) => {
 
     const navigate = useNavigate();
-    const handleSave = (id:number) => {};
+    const handleSave = (id:number) => {
+        const item = savedJobs.find((j) => j === id);
+        if(item) {
+            setSavedJobs(savedJobs.filter((j) => j !== item));
+        } else {
+            setSavedJobs((prev) => [...prev, id]);
+        }
+    };
 
   return (
     <div className="w-full flex items-center justify-between flex-wrap mt-8">
@@ -54,7 +61,16 @@ const ListedJobs = ({ jobs, setSavedJobs ,savedJobs }: ListedJobsProps) => {
                         </div>
                         <div className="flex flex-col gap-4 self-end">
                             <button onClick={() => navigate(`/jobs/${job.id}`)} className="text-white font-bold text-lg rounded-md bg-indigo-500 w-40 h-10"> Apply </button>
-                            <div className={`flex items-center gap-2 cursor-pointer rounded-md justify-center py-1 border border-gray-200 ${ savedJobs.some((j) => j === job.id) ? ( <Bookmark color={"#6366fa"} /> ): ( <BookmarkOutline color={"#6366fa"} /> ) }`}></div>
+                            <div onClick={() => handleSave(job.id)} className={`flex items-center gap-2 cursor-pointer rounded-md justify-center py-1 border border-gray-200 ${ savedJobs.some((j) => j === job.id) ? "bg-gray-100" : "bg-gray-200" }`}>
+                                { 
+                                    savedJobs.some((j) => j === job.id) ? ( <Bookmark color={"#6366fa"} /> ) : ( <BookmarkOutline color={"#6366fa"} /> ) 
+                                }
+                                <span className="font-medium text-[14.5px] text-gray-600">
+                                    {
+                                        savedJobs.some((j) => j === job.id) ? "saved!" : "save"
+                                    }
+                                </span>
+                            </div>
                         </div>
                     </div>
                 )
