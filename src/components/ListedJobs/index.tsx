@@ -1,4 +1,4 @@
-import { BookmarkOutline, BusinessOutline, LocateOutline, NewspaperOutline } from "react-ionicons";
+import { Bookmark, BookmarkOutline, BusinessOutline, LocateOutline, NewspaperOutline } from "react-ionicons";
 import { useNavigate } from "react-router";
 
 type Job = {

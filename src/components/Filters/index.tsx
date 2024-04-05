@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { BusinessOutline, Checkbox, CloseCircleOutline } from "react-ionicons";
+import { BusinessOutline, CloseCircleOutline } from "react-ionicons";
 import { useNavigate } from "react-router";
 import { jobs } from "../../data/jobs";
 
@@ -106,15 +106,15 @@ const Filters = ({ onFilterChange, savedJobs }: FiltersProps) => {
                 const j = jobs.find((j) => j.id === job);
                 if(j) {
                   return (
-                    <div key={job} className="text-gray-800 flex items-center justify-between w-full border border-gray-300 pb-3">
+                    <div key={job} className="text-gray-800 flex items-center justify-between w-full border border-gray-300 p-3 rounded-lg">
                     <div className="flex flex-col items-start gap-1">
-                      <span className="">j.title</span>
+                      <span className="">{j.title}</span>
                       <div className="flex items-center gap-2">
                         <BusinessOutline width={"18px"} height={"18px"} color={"#555"} />
-                        <span className="text-[14px] text-gray-600">j.company</span>
+                        <span className="text-[14px] text-gray-600">{j.company}</span>
                       </div>
                     </div>
-                    <button onClick={() => navigate(`/jobs/${j.id}`)} className="w-full text-white font-semibold text-[15px] rounded-md bg-indigo-500" >Apply</button>
+                    <button onClick={() => navigate(`/jobs/${j.id}`)} className="w-20 h-8 text-white font-semibold text-[15px] rounded-md bg-indigo-500" >Apply</button>
                   </div>
                   );
                 }
