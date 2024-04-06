@@ -5,6 +5,7 @@ import Services from "../../components/Services";
 import WelcomeText from "../../components/WelcomeText";
 import Searchbar from "../../components/Searchbar";
 import ListedJobs from "../../components/ListedJobs";
+import PopularSearches from "../../components/PopularSearches";
 import { jobs } from "../../data/jobs";
 
 const Home = () => {
@@ -36,6 +37,7 @@ const Home = () => {
           <Filters savedJobs={savedJobs} onFilterChange={handleFilterChange} />
           <div className="w-full">
             <Searchbar onSearch={handleSearch} />
+            <PopularSearches onSearch={handleSearch} />
             <ListedJobs jobs={filteredJobs} savedJobs={savedJobs} setSavedJobs={setSavedJobs} />
           </div>
         </div>
