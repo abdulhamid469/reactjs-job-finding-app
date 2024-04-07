@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { SearchOutline } from "react-ionicons";
 
 interface SearchbarProps {
-    onSearch: (query: string) => string;
+    onSearch: (query: string) => void;
 }
 const Searchbar = ({onSearch}: SearchbarProps) => {
     const [searchQuery, setSearchQuery] = useState<string>("");
